@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="نمای یکپارچه پروژه‌ها، Ownerها و OKR سه‌ماهه اول همراه‌جیب" />
+  <title>همراه‌جیب | پروژه‌ها و Ownerها</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="issues.css" />
+  <link rel="stylesheet" href="decisions.css" />
+  <link rel="stylesheet" href="journal.css" />
+  <link rel="stylesheet" href="commitments.css" />
+  <link rel="stylesheet" href="manager.css" />
+  <link rel="stylesheet" href="home-hierarchy.css" />
+  <link rel="stylesheet" href="fonts.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><strong>همراه‌جیب</strong><span>Q1 Execution Cockpit</span></div>
+      <nav aria-label="ناوبری اصلی">
+        <button class="nav-item active" data-view="home"><span>⌂</span> خانه</button>
+        <button class="nav-item" data-view="board"><span>◫</span> داشبورد هیئت‌مدیره</button>
+        <button class="nav-item" data-view="objectives"><span>◎</span> اهداف</button>
+        <button class="nav-item" data-view="teams"><span>◈</span> تیم‌ها</button>
+        <button class="nav-item" data-view="owner"><span>◉</span> Ownerها</button>
+        <button class="nav-item" data-view="manager"><span>▤</span> گزارش مدیر</button>
+        <button class="nav-item" data-view="execution"><span>⚑</span> اجرا</button>
+        <button class="nav-item" data-view="meetings"><span>▣</span> جلسات</button>
+      </nav>
+      <div class="quarter"><span>سه‌ماهه اول</span><strong>فعال · ۴۸ روز باقی‌مانده</strong></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><h1 id="page-title">خانه</h1><p id="page-subtitle">نمای اجرایی امروز شما</p></div>
+        <div class="topbar-actions"><a id="sheet-sync-status" class="sheet-sync-status loading" href="https://docs.google.com/spreadsheets/d/1Fo-zSlp5z_obLU8QQULT7vE3UPRiOhpzx40l0SR8urQ/edit" target="_blank" rel="noopener"><i></i><span>در حال دریافت داده‌ها</span></a><div class="profile"><span class="avatar">ک</span><div><strong>کاریز</strong><small>Objective Owner</small></div></div></div>
+      </header>
+
+      <section id="home" class="view active">
+        <div class="metrics">
+          <article class="metric"><span>Objectiveهای فصل</span><strong id="home-objective-count">۱۱</strong><small id="home-team-count">در ۱۰ تیم اجرایی</small></article>
+          <article class="metric"><span>Key Resultها</span><strong id="home-kr-count">۵۵</strong><small>خوانده‌شده از بانک اطلاعات</small></article>
+          <article class="metric"><span>Blockerهای ثبت‌شده</span><strong id="home-blocker-count" class="red">۱۳</strong><small>برگرفته از Google Sheet</small></article>
+          <article class="metric"><span>نیازمند تکمیل داده</span><strong id="home-pending-count" class="amber">۵ مورد</strong><small>Target یا Progress تکمیل‌نشده</small></article>
+        </div>
+        <section class="home-portfolio-head"><div><span>ساختار اجرای فصل</span><h2>پروژه‌ها و Ownerها</h2><p>هر پروژه، Owner مسئول و هدف‌های همان پروژه در یک مسیر واحد</p></div><button class="primary" data-view-target="update">ثبت Update جدید</button></section>
+        <nav id="home-project-index" class="home-project-index" aria-label="فهرست پروژه‌ها و Ownerها"></nav>
+      </section>
+
+      <section id="owner-detail" class="view">
+        <button id="owner-detail-back" class="owner-detail-back" type="button">← بازگشت به خانه</button>
+        <article class="owner-detail-shell">
+          <header class="owner-detail-hero">
+            <div class="owner-detail-project"><span id="owner-detail-icon"></span><div><small>پروژه</small><h2 id="owner-detail-project"></h2></div></div>
+            <div id="owner-detail-owners" class="owner-detail-owners"></div>
+          </header>
+          <div id="owner-detail-objectives" class="owner-detail-objectives"></div>
+        </article>
+      </section>
+
+      <section id="owner" class="view">
+        <div class="owner-directory panel">
+          <div class="section-head"><div><h2>Ownerهای Q1</h2><p>۹ Owner اصلی و دامنه پاسخ‌گویی آن‌ها</p></div><label class="owner-picker">Owner منتخب<select id="owner-select"></select></label></div>
+          <div class="owner-strip" id="owner-strip"></div>
+        </div>
+        <div class="metrics compact" id="owner-metrics"></div>
+        <div class="owner-workspace">
+          <section class="panel"><div class="section-head"><div><h2 id="owner-objectives-title">Objectiveهای Owner</h2><p>وضعیت وزنی، تیم و KRهای تحت پاسخ‌گویی</p></div><button class="primary small" data-view-target="update">ثبت Update</button></div><div id="owner-objectives"></div></section>
+          <aside class="panel owner-focus"><h2>تمرکز اجرایی</h2><p>مهم‌ترین مواردی که Owner باید پیگیری کند</p><div id="owner-focus-list"></div></aside>
+        </div>
+        <section class="journal-section">
+          <div class="journal-heading"><div><span>Owner Journal</span><h2 id="journal-title">دفترچه Owner</h2><p>روایت هفتگی اتفاق‌ها، یادگیری‌ها و پیگیری‌های اجرایی</p></div><div class="journal-filter"><label>نوع یادداشت<select id="journal-type-filter"><option value="all">همه</option><option value="update">Update</option><option value="achievement">دستاورد</option><option value="issue">مسئله</option><option value="learning">یادگیری</option><option value="follow-up">پیگیری</option><option value="system">سیستمی</option></select></label></div></div>
+          <div class="journal-layout">
+            <div class="journal-timeline" id="journal-timeline"></div>
+            <aside class="panel journal-form-panel">
+              <h2>یادداشت جدید</h2><p>یک اتفاق مهم را برای Owner منتخب ثبت کنید.</p>
+              <form id="journal-form">
+                <label>نوع<select id="journal-type"><option value="achievement">دستاورد</option><option value="issue">مسئله</option><option value="learning">یادگیری</option><option value="follow-up">پیگیری</option></select></label>
+                <label>Objective مرتبط<select id="journal-objective"></select></label>
+                <label>یادداشت<textarea id="journal-note" required placeholder="چه اتفاقی افتاد و چرا مهم است؟"></textarea></label>
+                <label>پیگیری بعدی<input id="journal-follow-up" placeholder="اقدام یا سؤال باز بعدی" /></label>
+                <div class="field-row"><label>سطح نمایش<select id="journal-visibility"><option value="owner">فقط Owner</option><option value="manager">Owner و مدیر</option><option value="board">قابل نمایش در جلسه Board</option></select></label><label>تاریخ پیگیری<input id="journal-follow-date" type="date" /></label></div>
+                <button class="primary full" type="submit">ثبت در Journal</button>
+              </form>
+            </aside>
+          </div>
+        </section>
+      </section>
+
+      <section id="manager" class="view">
+        <section class="manager-hero">
+          <div><span class="manager-kicker">گزارش هفتگی مدیریت</span><h2 id="manager-scope-title">نمای کل شرکت</h2><p>وضعیت اجرای OKR، کیفیت گزارش‌دهی و موارد نیازمند مداخله</p></div>
+          <div class="manager-controls"><label>حوزه مدیریتی<select id="manager-scope"></select></label><button id="manager-generate-brief" class="manager-report-action" type="button">آماده‌سازی گزارش جلسه</button></div>
+        </section>
+        <div class="metrics compact manager-metrics" id="manager-metrics"></div>
+        <div class="manager-top-grid">
+          <section class="panel manager-owner-panel">
+            <div class="section-head"><div><h2>وضعیت Ownerها</h2><p>پیشرفت، سلامت اجرا و تازگی گزارش هفتگی</p></div><span id="manager-owner-count" class="source-chip"></span></div>
+            <div class="manager-owner-table" id="manager-owner-table"></div>
+          </section>
+          <aside class="panel manager-attention-panel">
+            <div class="section-head"><div><h2>صف اقدام مدیر</h2><p>به‌ترتیب اثر بر اجرای فصل</p></div></div>
+            <div id="manager-attention-list" class="manager-attention-list"></div>
+          </aside>
+        </div>
+        <div class="manager-bottom-grid">
+          <section class="panel">
+            <div class="section-head"><div><h2>سلامت Objectiveها</h2><p>پیشرفت وزنی و مهم‌ترین علامت هشدار</p></div></div>
+            <div id="manager-objective-list" class="manager-objective-list"></div>
+          </section>
+          <section class="panel manager-brief-panel">
+            <div class="section-head"><div><h2>خلاصه آماده جلسه</h2><p>بر اساس آخرین وضعیت همین داشبورد</p></div><button id="manager-copy-brief" class="copy-brief" type="button">کپی گزارش</button></div>
+            <div id="manager-brief" class="manager-brief"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="update" class="view">
+        <div class="update-layout">
+          <form id="update-form" class="panel update-form">
+            <div class="section-head"><div><h2>Update هفتگی</h2><p>وضعیت Key Result را به‌روزرسانی کنید.</p></div></div>
+            <fieldset><legend>۱. Key Result</legend><div class="field-row three"><label>تیم<select id="update-team"></select></label><label>Objective<select id="update-objective"></select></label><label>Key Result<select id="update-kr"></select></label></div></fieldset>
+            <fieldset><legend>۲. Actual جدید</legend><div class="field-row three"><label>Actual قبلی<input id="previous-actual" disabled /></label><label>Actual جدید<input id="actual" type="number" min="0" step="any" required /></label><label>Target<input id="update-target" disabled /></label></div><div class="calculated"><span>Progress محاسبه‌شده</span><strong id="progress-value">—</strong></div></fieldset>
+            <fieldset><legend>۳. وضعیت مدیریتی</legend><label>Confidence</label><div class="confidence"><button type="button" data-confidence="High">High</button><button type="button" class="selected" data-confidence="Medium">Medium</button><button type="button" data-confidence="Low">Low</button></div><label>چه چیزی تغییر کرد؟<textarea id="change-note" required placeholder="دستاورد، تغییر یا علت انحراف را بنویسید…"></textarea></label></fieldset>
+            <fieldset><legend>۴. نیاز یا مانع</legend><div class="check-row"><label><input id="has-blocker" type="checkbox" /> Blocker دارم</label><label><input id="has-prerequisite" type="checkbox" /> Prerequisite نیاز دارم</label><label><input id="needs-de" type="checkbox" /> Decision مدیریتی لازم است</label></div><label class="conditional-field" id="blocker-field" hidden>شرح مانع یا نیاز<textarea id="blocker-note" placeholder="مانع، اثر آن و کمک موردنیاز را بنویسید…"></textarea></label></fieldset>
+            <fieldset><legend>۵. اقدام بعدی و تعهد</legend><div class="field-row"><label>اقدام بعدی<input id="next-action" required placeholder="نتیجه قابل تحویل تا گزارش بعد" /></label><label>موعد<input id="next-due" type="date" required /></label></div></fieldset>
+            <button class="primary full" type="submit">ثبت نهایی Update</button>
+          </form>
+          <aside class="update-side"><section class="panel preview"><h2>Preview مدیریتی</h2><p>پیش‌نمایش قبل از ثبت نهایی</p><div class="preview-hero"><small id="preview-team">—</small><strong id="preview-kr-title">—</strong><b><span id="preview-previous">—</span> ← <span id="preview-actual">—</span></b></div><div class="preview-metrics"><div><small>Progress</small><strong id="preview-progress">—</strong></div><div><small>Target</small><strong id="preview-target">—</strong></div><div><small>تغییر</small><strong id="preview-variance">—</strong></div><div><small>Confidence</small><strong id="preview-confidence" class="amber">Medium</strong></div></div><h3>خلاصه Update</h3><p id="preview-note">هنوز توضیحی ثبت نشده است.</p></section><section class="panel update-history"><div class="section-head"><div><h2>History</h2><p>Updateهای ثبت‌شده در این نشست</p></div><span id="history-count">۰</span></div><div id="update-history-list" class="history-list"><p class="empty-history">هنوز Update جدیدی ثبت نشده است.</p></div></section></aside>
+        </div>
+      </section>
+
+      <section id="board" class="view empty-view"><div class="panel"><h2>داشبورد هیئت‌مدیره</h2><p>نمای کلان پیشرفت، ریسک‌ها، Blockerها و تصمیم‌های موردنیاز در گام بعدی تکمیل می‌شود.</p></div></section>
+      <section id="objectives" class="view">
+        <div class="objective-toolbar panel">
+          <div><h2>Master OKR سه‌ماهه اول</h2><p>۱۱ Objective و ۵۵ Key Result متصل به تیم‌ها و Ownerهای مسئول</p></div>
+          <div class="objective-filters">
+            <label>جست‌وجو<input id="okr-search" type="search" placeholder="Objective، KR، KPI یا Owner" /></label>
+            <label>تیم<select id="team-filter"><option value="all">همه تیم‌ها</option></select></label>
+            <label>وضعیت<select id="status-filter"><option value="all">همه وضعیت‌ها</option><option value="on">On Track</option><option value="off">Off Track</option><option value="risk">At Risk</option><option value="pending">Target Pending</option><option value="review">نیازمند بررسی</option></select></label>
+          </div>
+        </div>
+        <div class="okr-summary" id="okr-summary"></div>
+        <div class="okr-catalog" id="okr-catalog"></div>
+        <div class="panel no-results" id="okr-empty" hidden><h2>موردی پیدا نشد</h2><p>فیلترها یا عبارت جست‌وجو را تغییر دهید.</p></div>
+      </section>
+      <section id="teams" class="view">
+        <div class="metrics compact team-metrics">
+          <article class="metric"><span>تیم‌های فعال</span><strong>۱۰</strong><small>بر اساس سند بالادستی</small></article>
+          <article class="metric"><span>Objectiveها</span><strong>۱۱</strong><small>در سه‌ماهه اول</small></article>
+          <article class="metric"><span>Key Resultها</span><strong>۵۵</strong><small>تحت مالکیت تیم‌ها</small></article>
+          <article class="metric"><span>Ownerهای اصلی</span><strong>۹</strong><small>یک Owner در بیش از یک تیم</small></article>
+        </div>
+        <section class="panel">
+          <div class="section-head"><div><h2>تیم‌های اجرای OKR</h2><p>ساختار تیم‌ها، Ownerها و دامنه مسئولیت هر تیم</p></div><span class="source-chip">Master OKR · Q1</span></div>
+          <div class="teams-grid">
+            <article class="team-card"><div class="team-icon">ر</div><div><h3>رفاه‌جیب</h3><p>راهکار اعتباری سازمان‌ها و کارکنان</p></div><dl><div><dt>Owner</dt><dd>کاریز</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۴</dd></div></dl></article>
+            <article class="team-card"><div class="team-icon">ب</div><div><h3>بیزجیب</h3><p>پرتفوی مشتریان تجاری و تسهیلات</p></div><dl><div><dt>Owner</dt><dd>عبدی</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۴</dd></div></dl></article>
+            <article class="team-card pending"><div class="team-icon">ج</div><div><h3>جیب‌پلاس</h3><p>تثبیت لاین تجاری و آمادگی End-to-End</p></div><dl><div><dt>Owner</dt><dd>فیض</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۴</dd></div></dl><span class="state-pill">Target Pending</span></article>
+            <article class="team-card"><div class="team-icon">ت</div><div><h3>تأمین منابع</h3><p>ظرفیت خطوط اعتباری و حاکمیت تأمین مالی</p></div><dl><div><dt>Owner</dt><dd>فیض</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۵</dd></div></dl></article>
+            <article class="team-card wide"><div class="team-icon">م</div><div><h3>محصول و فناوری</h3><p>محصولات End-to-End و استاندارد امنیت Go-Live</p></div><dl><div><dt>Ownerها</dt><dd>کیارش، افشار</dd></div><div><dt>Objective</dt><dd>۲</dd></div><div><dt>KR</dt><dd>۱۰</dd></div></dl><div class="subteams"><span>محصول</span><span>فناوری</span><span>امنیت</span></div></article>
+            <article class="team-card"><div class="team-icon">ع</div><div><h3>عملیات</h3><p>فرآیندهای اجرایی و پشتیبانی ۱۲ هزار کاربر</p></div><dl><div><dt>Owner</dt><dd>ساسان</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۶</dd></div></dl></article>
+            <article class="team-card"><div class="team-icon">ف</div><div><h3>مالی و ریسک</h3><p>کنترل مالی، اعتباری، بازپرداخت و مطالبات</p></div><dl><div><dt>Owner</dt><dd>ابداری</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۵</dd></div></dl></article>
+            <article class="team-card"><div class="team-icon">ب</div><div><h3>بازاریابی</h3><p>فعال‌سازی کاربران و پشتیبانی از رشد لاین‌ها</p></div><dl><div><dt>Owner</dt><dd>عسگریان</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۵</dd></div></dl></article>
+            <article class="team-card"><div class="team-icon">ن</div><div><h3>منابع انسانی</h3><p>ساختار نیروی انسانی و ارزیابی عملکرد</p></div><dl><div><dt>Owner</dt><dd>یاسین</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۵</dd></div></dl></article>
+            <article class="team-card pending"><div class="team-icon">پ</div><div><h3>پشتیبانی سازمانی</h3><p>منابع، تجهیزات و پشتیبانی اجرایی سازمان</p></div><dl><div><dt>Owner</dt><dd>نیازمند تصویب</dd></div><div><dt>Objective</dt><dd>۱</dd></div><div><dt>KR</dt><dd>۷</dd></div></dl><span class="state-pill">Owner Pending</span></article>
+          </div>
+        </section>
+      </section>
+      <section id="execution" class="view">
+        <div class="execution-tabs" role="tablist" aria-label="بخش‌های مرکز اجرا">
+          <button class="active" type="button" data-execution-pane="prerequisites">پیش‌نیازها <span id="prerequisite-tab-count">۱۰</span></button>
+          <button type="button" data-execution-pane="blockers">Blocker و Risk <span id="blocker-tab-count">۰</span></button>
+          <button type="button" data-execution-pane="decisions">تصمیم‌ها <span id="decision-tab-count">۸</span></button>
+          <button type="button" data-execution-pane="commitments">تعهدها <span id="commitment-tab-count">۸</span></button>
+        </div>
+        <div id="execution-prerequisites" class="execution-pane active">
+          <div class="metrics compact" id="prerequisite-metrics"></div>
+          <div class="prerequisite-layout">
+            <section>
+              <div class="panel prerequisite-toolbar">
+                <div><h2>پیش‌نیازهای اجرای Q1</h2><p>نیازهای بین‌تیمی استخراج‌شده از وضعیت فعلی OKRها</p></div>
+                <div class="prerequisite-filters"><label>تیم<select id="prerequisite-team-filter"><option value="all">همه تیم‌ها</option></select></label><label>وضعیت<select id="prerequisite-status-filter"><option value="all">همه وضعیت‌ها</option><option value="blocked">مسدود</option><option value="in-progress">در حال تأمین</option><option value="requested">درخواست‌شده</option><option value="ready">آماده</option></select></label></div>
+              </div>
+              <div id="prerequisite-list" class="prerequisite-list"></div>
+            </section>
+            <aside class="panel prerequisite-form-panel">
+              <h2>ثبت پیش‌نیاز جدید</h2><p>یک نیاز اجرایی را به Objective یا KR متصل کنید.</p>
+              <form id="prerequisite-form">
+                <label>عنوان<input id="prerequisite-title" required placeholder="مثلاً تأمین دسترسی سرویس" /></label>
+                <label>تیم درخواست‌کننده<select id="prerequisite-request-team"></select></label>
+                <label>مرتبط با Objective<select id="prerequisite-objective"></select></label>
+                <div class="field-row"><label>دسته‌بندی<select id="prerequisite-category"><option>Technology</option><option>Funding</option><option>HR</option><option>Operations</option><option>Legal</option><option>Management Decision</option><option>Other</option></select></label><label>Owner تأمین<input id="prerequisite-owner" placeholder="نام Owner یا نیازمند تعیین" /></label></div>
+                <div class="field-row"><label>درصد آمادگی<input id="prerequisite-progress" type="number" min="0" max="100" value="0" /></label><label>وضعیت<select id="prerequisite-status"><option value="requested">درخواست‌شده</option><option value="in-progress">در حال تأمین</option><option value="blocked">مسدود</option><option value="ready">آماده</option></select></label></div>
+                <label>اثر در صورت عدم تأمین<textarea id="prerequisite-impact" required placeholder="چه Objective یا خروجی‌ای متوقف می‌شود؟"></textarea></label>
+                <label>موعد<input id="prerequisite-due" type="date" /></label>
+                <button class="primary full" type="submit">ثبت پیش‌نیاز</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+        <div id="execution-blockers" class="execution-pane">
+          <div class="metrics compact" id="blocker-metrics"></div>
+          <div class="blocker-layout">
+            <section>
+              <div class="panel blocker-toolbar">
+                <div><h2>Blockerها و Riskهای Q1</h2><p>موانع جاری و ریسک‌های مدیریتی متصل به OKRها</p></div>
+                <div class="blocker-filters"><label>نوع<select id="issue-type-filter"><option value="all">همه</option><option value="blocker">Blocker</option><option value="risk">Risk</option></select></label><label>تیم<select id="issue-team-filter"><option value="all">همه تیم‌ها</option></select></label><label>شدت<select id="issue-severity-filter"><option value="all">همه</option><option value="critical">بحرانی</option><option value="high">بالا</option><option value="medium">متوسط</option></select></label></div>
+              </div>
+              <div id="issue-list" class="issue-list"></div>
+            </section>
+            <aside class="panel issue-form-panel">
+              <h2>ثبت Blocker یا Risk</h2><p>مورد را به تیم و Objective مسئول متصل کنید.</p>
+              <form id="issue-form">
+                <div class="field-row"><label>نوع<select id="issue-type"><option value="blocker">Blocker</option><option value="risk">Risk</option></select></label><label>شدت<select id="issue-severity"><option value="high">بالا</option><option value="critical">بحرانی</option><option value="medium">متوسط</option></select></label></div>
+                <label>عنوان<input id="issue-title" required placeholder="مانع یا ریسک را کوتاه بنویسید" /></label>
+                <label>تیم<select id="issue-team"></select></label>
+                <label>مرتبط با Objective<select id="issue-objective"></select></label>
+                <label>Owner پیگیری<input id="issue-owner" placeholder="نام Owner یا نیازمند تعیین" /></label>
+                <label>اثر<textarea id="issue-impact" required placeholder="اثر این مورد بر اجرای OKR چیست؟"></textarea></label>
+                <label>اقدام بعدی<input id="issue-next-action" required placeholder="اقدام مشخص برای رفع یا کنترل" /></label>
+                <label>موعد<input id="issue-due" type="date" /></label>
+                <button class="primary full" type="submit">ثبت مورد</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+        <div id="execution-decisions" class="execution-pane">
+          <div class="metrics compact" id="decision-metrics"></div>
+          <div class="decision-layout">
+            <section>
+              <div class="panel decision-toolbar">
+                <div><h2>صف تصمیم‌های مدیریتی</h2><p>تصمیم‌هایی که مستقیماً بر اجرای OKRهای Q1 اثر دارند</p></div>
+                <div class="decision-filters"><label>تیم<select id="decision-team-filter"><option value="all">همه تیم‌ها</option></select></label><label>وضعیت<select id="decision-status-filter"><option value="all">همه</option><option value="waiting">در انتظار تصمیم</option><option value="approved">تصویب‌شده</option><option value="deferred">موکول‌شده</option><option value="rejected">ردشده</option></select></label><label>اولویت<select id="decision-priority-filter"><option value="all">همه</option><option value="critical">بحرانی</option><option value="high">بالا</option><option value="medium">متوسط</option></select></label></div>
+              </div>
+              <div id="decision-list" class="decision-list"></div>
+            </section>
+            <aside class="panel decision-form-panel">
+              <h2>ثبت درخواست تصمیم</h2><p>صورت مسئله و پیشنهاد اجرایی را برای تصمیم‌گیرنده ثبت کنید.</p>
+              <form id="decision-form">
+                <label>موضوع تصمیم<input id="decision-title" required placeholder="چه تصمیمی باید گرفته شود؟" /></label>
+                <label>تیم درخواست‌کننده<select id="decision-team"></select></label>
+                <label>مرتبط با Objective<select id="decision-objective"></select></label>
+                <div class="field-row"><label>اولویت<select id="decision-priority"><option value="high">بالا</option><option value="critical">بحرانی</option><option value="medium">متوسط</option></select></label><label>تصمیم‌گیرنده<input id="decision-maker" placeholder="نام یا نیازمند تعیین" /></label></div>
+                <label>زمینه تصمیم<textarea id="decision-context" required placeholder="مسئله، محدودیت و اثر تأخیر را بنویسید…"></textarea></label>
+                <label>پیشنهاد Owner<textarea id="decision-recommendation" required placeholder="گزینه پیشنهادی برای تصویب چیست؟"></textarea></label>
+                <label>مهلت تصمیم<input id="decision-due" type="date" /></label>
+                <button class="primary full" type="submit">افزودن به صف تصمیم</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+        <div id="execution-commitments" class="execution-pane">
+          <div class="metrics compact" id="commitment-metrics"></div>
+          <div class="commitment-layout">
+            <section>
+              <div class="panel commitment-toolbar">
+                <div><h2>تعهدهای اجرایی Q1</h2><p>خروجی قابل تحویل، Owner مسئول، موعد و شاهد انجام</p></div>
+                <div class="commitment-filters"><label>Owner<select id="commitment-owner-filter"><option value="all">همه Ownerها</option></select></label><label>تیم<select id="commitment-team-filter"><option value="all">همه تیم‌ها</option></select></label><label>وضعیت<select id="commitment-status-filter"><option value="all">همه</option><option value="open">باز</option><option value="in-progress">در حال انجام</option><option value="done">انجام‌شده</option><option value="overdue">معوق</option></select></label></div>
+              </div>
+              <div id="commitment-list" class="commitment-list"></div>
+            </section>
+            <aside class="panel commitment-form-panel">
+              <h2>ثبت تعهد جدید</h2><p>تعهد باید یک خروجی روشن و قابل اثبات داشته باشد.</p>
+              <form id="commitment-form">
+                <label>خروجی مورد تعهد<input id="commitment-title" required placeholder="مثلاً نسخه نهایی قرارداد تحویل شود" /></label>
+                <div class="field-row"><label>Owner<select id="commitment-owner"></select></label><label>تیم<select id="commitment-team"></select></label></div>
+                <label>مرتبط با Objective<select id="commitment-objective"></select></label>
+                <div class="field-row"><label>وضعیت<select id="commitment-status"><option value="open">باز</option><option value="in-progress">در حال انجام</option><option value="done">انجام‌شده</option></select></label><label>موعد<input id="commitment-due" type="date" /></label></div>
+                <label>شاهد انجام<input id="commitment-evidence" required placeholder="لینک، فایل، مصوبه یا خروجی قابل بررسی" /></label>
+                <label>یادداشت<textarea id="commitment-note" placeholder="وابستگی یا توضیح تکمیلی"></textarea></label>
+                <button class="primary full" type="submit">ثبت تعهد</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <section id="meetings" class="view empty-view"><div class="panel"><h2>جلسات</h2><p>Meeting Mode و Snapshot جلسات مدیریتی در این بخش قرار می‌گیرد.</p></div></section>
+    </main>
+  </div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="okr-data.js?v=2"></script>
+  <script src="sheet-sync.js?v=2"></script>
+  <script>
+    window.okrDataReady.finally(function () {
+      var script = document.createElement('script');
+      script.src = 'app.js?v=2';
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>

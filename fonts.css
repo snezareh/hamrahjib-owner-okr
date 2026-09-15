@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap');
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Vazirmatn", Tahoma, "Segoe UI", sans-serif;
+}
+
+body {
+  line-height: 1.55;
+}
+
+.brand span {
+  font-family: "Segoe UI", sans-serif;
+}
